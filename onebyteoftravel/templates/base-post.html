@@ -1,0 +1,76 @@
+{% load cms_tags menu_tags sekizai_tags staticfiles %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+
+  <head>
+
+    <link rel="shortcut icon" type="image/x-icon" href="http://{{request.get_host}}/static/img/onebyteoftravel.ico" />
+    <title>{{post.meta_title}}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="{{post.meta_description}}">
+    <meta name="author" content="{{post.author.get_full_name}}">
+    <meta name="keywords" content="{{post.meta_keywords}}">
+    <meta property="og:url"           content="{{post.get_full_url}}" />
+    <meta property="og:type"          content="article" />
+    <meta property="og:title"         content="{{post.title}}" />
+    <meta property="og:description"   content="{{post.meta_description}}" />
+    <meta property="og:image"         content="https://i.imgur.com/ePZTJOF.png" />
+    {% include 'styles.html' %}
+    <style>
+        .social-share-button {
+            margin: 0.26em;
+        }
+        .linkedin-share {
+            margin-left: 0em !important;
+        }
+    </style>
+    {% render_block "css" %}
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-121648776-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-121648776-1');
+    </script>
+    <!-- Google Analytice end -->
+  </head>
+
+  <body>
+    {% cms_toolbar %}
+    <!-- Navigation -->
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <div class="social-share-header">
+          <a href="https://www.facebook.com/onebyteoftravel/" target="_blank" class="fab fa-facebook-square"></a>
+          <a href="https://twitter.com/onebyteoftravel" target="_blank" class="fab fa-twitter-square"></a>
+          <a href="https://www.instagram.com/onebyteoftravel/" target="_blank" class="fab fa-instagram"></a>
+          <a href="https://www.youtube.com/channel/UC1qrabKqHy0uFb5g1HWNz2A" class="fab fa-youtube-square"></a>
+          <a href="http://feeds.feedburner.com/OneByteOfTravel" target="_blank" class="fas fa-rss-square"></a>
+        </div>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            {% show_menu 0 0 1 1 %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    {% block content %}
+        {% block content_blog %}{% endblock %}
+    {% endblock content %}
+
+    <!-- footer -->
+    {% include 'footer.html' %}
+    <!-- Bootstrap core JavaScript -->
+    {% include 'scripts.html' %}
+    {% render_block "js" %}
+
+  </body>
+
+</html>

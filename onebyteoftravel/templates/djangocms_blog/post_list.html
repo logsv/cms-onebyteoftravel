@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+{% load cms_tags %}
+
+{% load i18n easy_thumbnails_tags %}{% spaceless %}
+
+{% block title %}{% page_attribute "page_title" %}{% endblock title %}
+
+{% block content %}
+    <!-- Page Content -->
+    <div class="container">
+
+      <!-- Page Heading/Breadcrumbs -->
+      <h1 class="mt-4 mb-3">One Byte Of Travel &#47;
+        <small>{% page_attribute 'page_title' %}</small>
+      </h1>
+
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="/">Home</a>
+        </li>
+        <li class="breadcrumb-item active">#onebyteoftravel</li>
+      </ol>
+
+      <div class="row">
+
+        <!-- Blog Entries Column -->
+        <div class="col-md-8">
+            {% for post in post_list %}
+                <div class="card mb-4">
+                    {% if post.main_image %}
+                        {% thumbnail post.main_image "750x300" crop=post.thumbnail_options.crop upscale=post.thumbnail_options.upscale subject_location=post.main_image.subject_location as thumb %}
+                        <img class="card-img-top" src="{{ thumb.url }}" alt="{{ post.main_image.default_alt_text }}">
+                    {% endif %}
+                    <div class="card-body">
+                      <h2 class="card-title">{{ post.title }}</h2>
+                      <p class="card-text">
+                          {% if not TRUNCWORDS_COUNT %}
+                                {% render_model post "abstract" "" "" "safe" %}
+                            {% else %}
+                                {% render_model post "abstract" "" "" "truncatewords_html:TRUNCWORDS_COUNT|safe"  %}
+                            {% endif %}
+                      </p>
+                      <a href="{{ post.get_absolute_url }}" class="btn btn-primary">Read More &rarr;</a>
+                    </div>
+                    {% block blog_title %}
+                    <div class="card-footer text-muted">
+                      Posted on {{ post.date_published|date:"D, d M Y" }}
+                      {% if post.author %}
+                          {% trans "by" %} <a href="{% url 'djangocms_blog:posts-author' post.author.get_username %}">{% if post.author.get_full_name %}{{ post.author.get_full_name }}{% else %}{{ post.author }}{% endif %}</a>
+                      {% endif %}
+                    </div>
+                    {% endblock %}
+                </div>
+            {% empty %}
+                    <p class="blog-empty">{% trans "No article found." %}</p>
+            {% endfor %}
+            {% if is_paginated %}
+                <ul class="pagination justify-content-center mb-4">
+                    {% if page_obj.has_next %}
+                        <li class="page-item {% if not page_obj.has_next %} disabled {% endif %}">
+                          <a class="page-link" href="?{{ view.page_kwarg }}={{ page_obj.next_page_number }}">&larr; Older</a>
+                        </li>
+                    {%endif %}
+                    {% if page_obj.has_previous %}
+                        <li class="page-item">
+                          <a class="page-link" href="?{{ view.page_kwarg }}={{ page_obj.previous_page_number }}">Newer &rarr;</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            {% endif %}
+          <!-- Pagination -->
+
+        </div>
+
+        <!-- Sidebar Widgets Column -->
+        <div class="col-md-4">
+
+          <!-- Search Widget -->
+          <!--<div class="card mb-4">-->
+            <!--<h5 class="card-header">Search</h5>-->
+            <!--<div class="card-body">-->
+              <!--<div class="input-group">-->
+                <!--<input type="text" class="form-control" placeholder="Search for...">-->
+                <!--<span class="input-group-btn">-->
+                  <!--<button class="btn btn-secondary" type="button">Go!</button>-->
+                <!--</span>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!-- Categories Widget -->
+         <div class="card my-4">
+            <h5 class="card-header">Albert Einstein</h5>
+            <div class="card-body">
+                Life is like riding a bicycle. To keep your balance, you must keep moving.
+            </div>
+          </div>
+          <div class="card my-4">
+            <h5 class="card-header">{% trans "Categories" %}</h5>
+            <div class="card-body">
+                {% static_placeholder 'static_categories' %}
+            </div>
+          </div>
+          <div class="card my-4">
+            <h5 class="card-header">{% trans "Tags" %}</h5>
+            <div class="card-body">
+                {% static_placeholder 'static_tags' %}
+            </div>
+          </div>
+         <div class="card my-4">
+            <h5 class="card-header">YouTube Channel</h5>
+            <div class="card-body">
+                <div class="g-ytsubscribe" data-channelid="UC1qrabKqHy0uFb5g1HWNz2A" data-layout="full" data-count="hidden"></div>
+            </div>
+          </div>
+
+         <!--<div class="card my-4">-->
+            <!--<h5 class="card-header">Twitter</h5>-->
+            <!--<div class="card-body">-->
+                <!--<a href="https://twitter.com/onebyteoftravel?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow</a> <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!-- Side Widget -->
+        </div>
+
+      </div>
+      <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+{% endblock content %}
+{% endspaceless %}
+<div class="card my-4">
+            <h5 class="card-header">Albert Einstein</h5>
+            <div class="card-body">
+              {% static_placeholder "Categories" %}
+            </div>
+          </div>

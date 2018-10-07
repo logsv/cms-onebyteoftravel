@@ -1,0 +1,98 @@
+{% load cms_tags menu_tags sekizai_tags staticfiles %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+
+  <head>
+
+    <link rel="shortcut icon" type="image/x-icon" href="{% if request.is_secure %}https://{% else %}http://{% endif %}{{request.get_host}}/static/img/onebyteoftravel.ico" />
+    <title>One Byte Of Travel - {% page_attribute 'page_title' %}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="{% page_attribute 'meta_description' %}">
+    <meta name="author" content="One Byte Of Travel">
+    <meta name="keywords" content="{% page_attribute 'meta_description' %}">
+    <meta property="og:url"           content="https://onebyteoftravel.com/" />
+    <meta property="og:type"          content="article" />
+    <meta property="og:title"         content="One Byte Of Travel" />
+    <meta property="og:description"   content="{% page_attribute 'meta_description' %}" />
+    <meta property="og:image"         content="https://i.imgur.com/ePZTJOF.png" />
+
+    {% include 'styles.html' %}
+    {% render_block "css" %}
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-121648776-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-121648776-1');
+    </script>
+    <!-- Google Analytice end -->
+  </head>
+
+  <body>
+    {% cms_toolbar %}
+    <!-- Navigation -->
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <div class="social-share-header">
+          <a href="https://www.facebook.com/onebyteoftravel/" target="_blank" class="fab fa-facebook-square"></a>
+          <a href="https://twitter.com/onebyteoftravel" target="_blank" class="fab fa-twitter-square"></a>
+          <a href="https://www.instagram.com/onebyteoftravel/" target="_blank" class="fab fa-instagram"></a>
+          <a href="https://www.youtube.com/channel/UC1qrabKqHy0uFb5g1HWNz2A" class="fab fa-youtube-square"></a>
+          <a href="http://feeds.feedburner.com/OneByteOfTravel" target="_blank" class="fas fa-rss-square"></a>
+        </div>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            {% show_menu 0 0 0 0 %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <header>
+      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+          <!--<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>-->
+        </ol>
+        <div class="carousel-inner" role="listbox">
+          <!-- Slide One - Set the background image for this slide in the line below -->
+          <div class="carousel-item active" style="background-image: url('https://i.imgur.com/IRILJ14.jpg')">
+            <div class="carousel-caption d-none d-md-block">
+              <h3>One Byte Of Travel</h3>
+              <p>Sharing My Technology Experience.</p>
+            </div>
+          </div>
+          <!-- Slide Two - Set the background image for this slide in the line below -->
+          <div class="carousel-item" style="background-image: url('https://i.imgur.com/IRILJ14.jpg')">
+            <div class="carousel-caption d-none d-md-block">
+              <h3>One Byte Of Travel</h3>
+              <p>Sharing My Travel Experience.</p>
+            </div>
+          </div>
+          <!-- Slide Three - Set the background image for this slide in the line below -->
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </header>
+    {% block content %}
+    {% endblock content %}
+    {% include 'footer.html' %}
+    {% include 'scripts.html' %}
+    {% render_block "js" %}
+
+  </body>
+
+</html>

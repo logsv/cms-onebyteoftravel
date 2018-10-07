@@ -1,0 +1,37 @@
+Metadata-Version: 2.0
+Name: aldryn-search
+Version: 1.0.1
+Summary: An extension to django CMS to provide multilingual Haystack indexes
+Home-page: http://github.com/aldryn/aldryn-search
+Author: Benjamin Wohlwend
+Author-email: piquadrat@gmail.com
+License: BSD
+Platform: OS Independent
+Classifier: Development Status :: 4 - Beta
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 1.8
+Classifier: Framework :: Django :: 1.9
+Classifier: Framework :: Django :: 1.10
+Classifier: Framework :: Django :: 1.11
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Internet :: WWW/HTTP
+Requires-Dist: Django (>=1.8,<2.0)
+Requires-Dist: aldryn-common (>=1.0.2)
+Requires-Dist: django-appconf
+Requires-Dist: django-cms (>=3.2)
+Requires-Dist: django-haystack (>=2.0.0)
+Requires-Dist: django-spurl
+Requires-Dist: django-standard-form
+Requires-Dist: lxml
+Requires-Dist: setuptools
+
+UNKNOWN
+
+

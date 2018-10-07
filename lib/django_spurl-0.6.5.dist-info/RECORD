@@ -1,0 +1,15 @@
+django_spurl-0.6.5.dist-info/METADATA,sha256=Sss4QIo5ECcLOzSL4PNwUgMvJtPjgEVefmiKR6pkVVE,18361
+django_spurl-0.6.5.dist-info/RECORD,,
+django_spurl-0.6.5.dist-info/WHEEL,sha256=J3CsTk7Mf2JNUyhImI-mjX-fmI4oDjyiXgWT4qgZiCE,110
+django_spurl-0.6.5.dist-info/top_level.txt,sha256=lFk7aIqTogH-ZNVTDwMBwR_IgLQKCna2LJRSMSgqEoE,6
+spurl/__init__.py,sha256=g0OeNAF6f8ojnlyb43abksBvbLUrnL-AlwclSoULgd0,22
+spurl/models.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+spurl/tests.py,sha256=afyb3iRrtrBws4iJ9GPtUems7HStERE4aoMfk9Xs3wM,18625
+spurl/templatetags/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+spurl/templatetags/spurl.py,sha256=XNjCOW0GaccDsNU-kHsRy09D9Z2LCCDjoOiVuNeubSc,9376
+django_spurl-0.6.5.dist-info/INSTALLER,sha256=zuuue4knoyJ-UwPPXg8fezS7VCrXJQrAP7zeNuwvFQg,4
+spurl/templatetags/spurl.pyc,,
+spurl/__init__.pyc,,
+spurl/templatetags/__init__.pyc,,
+spurl/models.pyc,,
+spurl/tests.pyc,,

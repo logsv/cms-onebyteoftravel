@@ -1,0 +1,17 @@
+django_standard_form-1.1.1.dist-info/METADATA,sha256=0ufqVqF157ef0JkT_CPcDkj_4eQ94sZSkDuvHaAfsZs,2705
+django_standard_form-1.1.1.dist-info/RECORD,,
+django_standard_form-1.1.1.dist-info/WHEEL,sha256=1GbQwWo-bz5MQ7TWgxmoj0u3qc5GM8qVkJvIGW53qLM,93
+django_standard_form-1.1.1.dist-info/top_level.txt,sha256=VPVtzTgkKGSF7Gd7imHirHkaJ7DSG86BF699IM9ADgY,14
+standard_form/__init__.py,sha256=53GVpdbXWKClDfDcMCbYGRJD9bu0Au5mGW3n_hBqP3w,21
+standard_form/models.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+standard_form/templates/standard_form/field.html,sha256=Pte6uHQItStNYGbufqkJCMc_PkySSVO3BQSz1tPYa7Q,1299
+standard_form/templates/standard_form/form.html,sha256=rWtC-viL9c3dZZrRCLefeLaB2WDNvMjaN5qGrJIUkzo,268
+standard_form/templates/standard_form/non_field_errors.html,sha256=W88MQnfojerV57rpgXFj98K2_B35TI9WwhcSwJotHzk,89
+standard_form/templates/standard_form/submit.html,sha256=6OMRgc3FMrd3u5SVdnbmPOBCXXBc7nLZsheVghuydC8,142
+standard_form/templatetags/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+standard_form/templatetags/__init__.pyc,sha256=imWAdVzGq6lSkjJCkZSe78U_IrNBQPYRXHvBl4Hvjrc,173
+standard_form/templatetags/standard_form.py,sha256=8ZIWf9SojSmqG6cNGCfBfC77vNE0M51Y3AzVKtyN2ts,6911
+standard_form/templatetags/standard_form.pyc,sha256=40guMG1jtv_m63m07f_rgQFcobj2qtFQqHQHd8Jp5wo,6492
+django_standard_form-1.1.1.dist-info/INSTALLER,sha256=zuuue4knoyJ-UwPPXg8fezS7VCrXJQrAP7zeNuwvFQg,4
+standard_form/__init__.pyc,,
+standard_form/models.pyc,,

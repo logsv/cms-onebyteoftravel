@@ -1,0 +1,103 @@
+Metadata-Version: 2.1
+Name: django-standard-form
+Version: 1.1.1
+Summary: Quick and simple django templatetags for displaying forms.
+Home-page: https://github.com/alesdotio/django-standard-form
+Author: Ales Kocjancic
+Author-email: alesdotio@gmail.com
+License: BSD License
+Platform: OS Independent
+Classifier: Development Status :: 3 - Alpha
+Classifier: Framework :: Django
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Topic :: Software Development
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Requires-Dist: Django (>=1.3)
+Requires-Dist: django-classy-tags (>=0.3.3)
+
+====================
+django Standard Form
+====================
+
+Quick and simple django templatetags for displaying forms.
+
+
+Installation
+============
+
+1) ``pip install django-standard-form``
+
+2) add ``'standard_form'`` to your ``INSTALLED_APPS``
+
+
+Usage
+=====
+
+* Most basic example:
+
+::
+
+    {% load standard_form %}
+
+    <form action="" method="post" class="frm">
+        {% csrf_token %}
+        <fieldset class="frm-horizontal">
+            {% standard_form form %}
+            {% standard_submit %}
+        </fieldset>
+    </form>
+
+
+* Rendering fields individually:
+
+::
+
+
+    <form action="" method="post" class="frm">
+        {% csrf_token %}
+        <fieldset class="frm-horizontal">
+            <ol>
+                <li>{% standard_field form.field_name_one %}</li>
+            </ol>
+        </fieldset>
+        <fieldset class="frm-vertical">
+            <ol>
+                <li>{% standard_field form.field_name_two %}</li>
+            </ol>
+            {% standard_submit %}
+        </fieldset>
+    </form>
+
+
+* Rendering widgets individually:
+
+::
+
+    <form action="" method="post" class="frm">
+        {% csrf_token %}
+        <fieldset class="frm-horizontal">
+            <ol>
+                 <li>
+                     <label for="id_{{ form.field_name_one.name }}">My label or other stuff</label>
+                     <div class="field">{% standard_widget form.field_name_one %}</div>
+                 </li>
+                 <li>
+                     <label class="empty"></label>
+                     <div class="field"><input type="submit" class="btn" value="{% trans 'Go' %}" /></div>
+                 </li>
+            </ol>
+        </fieldset>
+    </form>
+
+* All available options:
+
+::
+
+    {% standard_field form.field_name_one 'no_required no_required_helper no_help_text no_error_text' custom_class='input-block' placeholder='This one has all the available options' label='My label' %}
+
+
+
