@@ -8,18 +8,25 @@
 {% block content %}
     <!-- Page Content -->
     <div class="container">
-
+        <div class="row mb-1 mt-3">
+            <div class="col-md-8">
+                <a class="btn btn-outline-dark" href="/" role="button">Home</a>
+                <a class="btn btn-outline-dark" href="https://github.com/im-vikas187/cms-onebyteoftravel" target="_blank" role="button">
+                    Code on Github</a>
+                <a class="btn btn-outline-dark" href="https://codeifyoucansolve.wordpress.com" target="_blank" role="button">
+                    Code If You Can Solve</a>
+            </div>
+        </div>
       <!-- Page Heading/Breadcrumbs -->
       <h1 class="mt-4 mb-3">One Byte Of Travel &#47;
         <small>{% page_attribute 'page_title' %}</small>
       </h1>
-
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-          <a href="/">Home</a>
-        </li>
-        <li class="breadcrumb-item active">#onebyteoftravel</li>
-      </ol>
+      <!--<ol class="breadcrumb">-->
+        <!--<li class="breadcrumb-item">-->
+          <!--<a href="/">Home</a>-->
+        <!--</li>-->
+        <!--<li class="breadcrumb-item active">#onebyteoftravel</li>-->
+      <!--</ol>-->
 
       <div class="row">
 
@@ -40,13 +47,14 @@
                                 {% render_model post "abstract" "" "" "truncatewords_html:TRUNCWORDS_COUNT|safe"  %}
                             {% endif %}
                       </p>
-                      <a href="{{ post.get_absolute_url }}" class="btn btn-primary">Read More &rarr;</a>
+                      <a href="{{ post.get_absolute_url }}" class="btn btn-outline-info">Read More &rarr;</a>
                     </div>
                     {% block blog_title %}
                     <div class="card-footer text-muted">
                       Posted on {{ post.date_published|date:"D, d M Y" }}
                       {% if post.author %}
-                          {% trans "by" %} <a href="{% url 'djangocms_blog:posts-author' post.author.get_username %}">{% if post.author.get_full_name %}{{ post.author.get_full_name }}{% else %}{{ post.author }}{% endif %}</a>
+                          {% trans "by" %} <a href="{% url 'djangocms_blog:posts-author' post.author.get_username %}" class="link-clr-dark">
+                           {% if post.author.get_full_name %}{{ post.author.get_full_name }}{% else %}{{ post.author }}{% endif %}</a>
                       {% endif %}
                     </div>
                     {% endblock %}
@@ -90,13 +98,13 @@
           <!-- Categories Widget -->
           <div class="card my-4">
             <h5 class="card-header">{% trans "Categories" %}</h5>
-            <div class="card-body">
+            <div class="card-body link-clr-dark">
                 {% static_placeholder 'static_categories' %}
             </div>
           </div>
           <div class="card my-4">
             <h5 class="card-header">{% trans "Tags" %}</h5>
-            <div class="card-body">
+            <div class="card-body link-clr-dark">
                 {% static_placeholder 'static_tags' %}
             </div>
           </div>
