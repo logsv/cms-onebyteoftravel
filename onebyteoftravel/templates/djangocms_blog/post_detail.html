@@ -9,22 +9,34 @@
 {% block content_blog %}{% spaceless %}
 <!-- Page Content -->
 <div class="container">
-
+    <div class="row mb-1 mt-4">
+            <div class="col-md-8">
+                <a class="btn btn-outline-dark" href="/" role="button">Home</a>
+                <a class="btn btn-outline-dark" href="https://github.com/im-vikas187/cms-onebyteoftravel" target="_blank" role="button">
+                    Code on Github</a>
+                <a class="btn btn-outline-dark" href="https://codeifyoucansolve.wordpress.com" target="_blank" role="button">
+                    Code If You Can Solve</a>
+            </div>
+        </div>
+      <!-- Page Heading/Breadcrumbs -->
+      <!--<h1 class="mt-4 mb-3">One Byte Of Travel &#47;-->
+        <!--<small>{% page_attribute 'page_title' %}</small>-->
+      <!--</h1>-->
   <!-- Page Heading/Breadcrumbs -->
   <h1 class="mt-4 mb-3">{{ post.title }}
-        <!--<small>-->
-          <!--<a href="#"></a>-->
-        <!--</small>-->
+        <small>
+          #onebyteoftravel
+        </small>
   </h1>
 
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item">
-      <a href="/">Home</a>
-    </li>
-      {% if post.subtitle %}
-        <li class="breadcrumb-item active">{% render_model post "subtitle" %}</li>
-      {% endif %}
-  </ol>
+  <!--<ol class="breadcrumb">-->
+    <!--<li class="breadcrumb-item">-->
+      <!--<a href="/">Home</a>-->
+    <!--</li>-->
+      <!--{% if post.subtitle %}-->
+        <!--<li class="breadcrumb-item active">{% render_model post "subtitle" %}</li>-->
+      <!--{% endif %}-->
+  <!--</ol>-->
 
   <div class="row">
 
@@ -160,7 +172,7 @@
                       {% for category in post.categories.all %}
                         {% if category.slug %}
                             <li>
-                              <a href="{% url 'djangocms_blog:posts-category' category=category.slug %}">{{ category.name }}</a>
+                              <a href="{% url 'djangocms_blog:posts-category' category=category.slug %}"  class="link-clr-dark">{{ category.name }}</a>
                             </li>
                          {% endif %}
                       {% endfor %}
@@ -192,7 +204,7 @@
                   <ul class="list-unstyled mb-0">
                       {% for tag in post.tags.all %}
                         <li>
-                          <a href="{% url 'djangocms_blog:posts-tagged' tag=tag.slug %}">{{ tag.name }}</a>
+                          <a href="{% url 'djangocms_blog:posts-tagged' tag=tag.slug %}" class="link-clr-dark">{{ tag.name }}</a>
                         </li>
                       {% endfor %}
                   </ul>
