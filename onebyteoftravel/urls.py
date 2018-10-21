@@ -10,6 +10,7 @@ from django.contrib.sitemaps.views import sitemap
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.views.static import serve
 from djangocms_blog.sitemaps import BlogSitemap
+from django.views.generic import TemplateView
 
 admin.autodiscover()
 
@@ -22,6 +23,8 @@ urlpatterns += (
     url(r'^admin/', include(admin.site.urls)),  # NOQA
     url(r'^(en/)?', include('cms.urls')),
     url(r'^taggit_autosuggest/', include('taggit_autosuggest.urls')),
+    url(r'^robots.txt$', TemplateView.as_view(template_name="robots.txt", content_type="text/plain"),
+        name="robots_file")
 )
 
 # This is only needed when using runserver.

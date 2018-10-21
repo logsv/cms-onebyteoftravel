@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /privacy/
+
+Sitemap: https://onebyteoftravel.com/sitemap.xml
