@@ -182,7 +182,8 @@ CMS_LANGUAGES = {
 CMS_TEMPLATES = (
     ## Customize this
     ('djangocms_blog/post_list.html', 'PostList'),
-    ('privacy.html', 'privacy')
+    ('privacy.html', 'privacy'),
+    ('djangocms_blog/algo_post_lists.html', 'AlgoPostList'),
 )
 
 CMS_PERMISSION = True
