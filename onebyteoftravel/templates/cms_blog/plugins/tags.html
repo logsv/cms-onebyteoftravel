@@ -1,0 +1,22 @@
+{% load i18n %}{% spaceless %}
+<div class="row">
+    <div class="col-lg-6">
+      <ul class="list-unstyled mb-0">
+          {% for tag in tags|slice:"0:2" %}
+            <li>
+              <a href="{% url 'djangocms_blog:posts-tagged' tag=tag.slug %}">{{ tag.name }}</a>
+            </li>
+          {% endfor %}
+      </ul>
+    </div>
+    <div class="col-lg-6">
+      <ul class="list-unstyled mb-0">
+          {% for tag in tags|slice:"2:" %}
+            <li>
+              <a href="{% url 'djangocms_blog:posts-tagged' tag=tag.slug %}">{{ tag.name }}</a>
+            </li>
+          {% endfor %}
+      </ul>
+    </div>
+</div>
+{% endspaceless %}
