@@ -45,7 +45,7 @@ automatic_scaling:
 
 > `db-f1-micro`
 > `1 vCPUs`, `memory 614.4 MB.`
-> `./cloud_sql_proxy -instances=one-byte-of-travel:asia-south1:onebyteoftravel=tcp:3306`
+> `./cloud_sql_proxy -instances=<Instace Name>=tcp:3306`
 
 4. Domain mapping & SSL certificates
 > `Google managed`
