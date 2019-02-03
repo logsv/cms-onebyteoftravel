@@ -184,7 +184,6 @@ CMS_TEMPLATES = (
     ('djangocms_blog/post_list.html', 'PostList'),
     ('privacy.html', 'privacy'),
     ('djangocms_blog/algo_post_lists.html', 'AlgoPostList'),
-    ('cms_blog/static_about.html', 'StaticPage'),
 )
 
 CMS_PERMISSION = True

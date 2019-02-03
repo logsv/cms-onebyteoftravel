@@ -1,4 +1,4 @@
-{% extends "cms_blog/base.html" %}
+{% extends "base.html" %}
 {% load cms_tags %}
 
 {% load i18n easy_thumbnails_tags %}{% spaceless %}
@@ -6,59 +6,149 @@
 {% block title %}{% page_attribute "page_title" %}{% endblock title %}
 
 {% block content %}
-    <!-- Main Content -->
+    <!-- Page Content -->
     <div class="container">
+        <div class="row mb-1 mt-3">
+            <div class="col-md-8">
+                <a class="btn btn-outline-dark" href="/" role="button">Home</a>
+                <a class="btn btn-outline-dark" href="https://github.com/im-vikas187/cms-onebyteoftravel" target="_blank" role="button">
+                    Code on Github</a>
+                <a class="btn btn-outline-dark" href="https://codeifyoucansolve.wordpress.com" target="_blank" role="button">
+                    Code If You Can Solve</a>
+                <a class="btn btn-outline-dark" href="/weekend-trips/" role="button">
+                    Weekend Trips</a>
+            </div>
+        </div>
+      <!-- Page Heading/Breadcrumbs -->
+      <h1 class="mt-4 mb-3">One Byte Of Travel &#47;
+        <small>{% page_attribute 'page_title' %}</small>
+      </h1>
+      <!--<ol class="breadcrumb">-->
+        <!--<li class="breadcrumb-item">-->
+          <!--<a href="/">Home</a>-->
+        <!--</li>-->
+        <!--<li class="breadcrumb-item active">#onebyteoftravel</li>-->
+      <!--</ol>-->
+
       <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
+
+        <!-- Blog Entries Column -->
+        <div class="col-md-8">
             {% for post in post_list %}
-              <div class="post-preview">
-                <a href="{{ post.get_absolute_url }}">
-                  <h2 class="post-title">
-                    {{ post.title }}
-                  </h2>
-                  <h3 class="post-subtitle">
-                    {% if not TRUNCWORDS_COUNT %}
+                <div class="card mb-4">
+                    {% if post.main_image %}
+                        {% thumbnail post.main_image "750x300" crop=post.thumbnail_options.crop upscale=post.thumbnail_options.upscale subject_location=post.main_image.subject_location as thumb %}
+                        <img class="card-img-top" src="{{ thumb.url }}" alt="{{ post.main_image.default_alt_text }}">
+                    {% endif %}
+                    <div class="card-body">
+                      <h2 class="card-title">{{ post.title }}</h2>
+                      <p class="card-text">
+                          {% if not TRUNCWORDS_COUNT %}
                                 {% render_model post "abstract" "" "" "safe" %}
                             {% else %}
                                 {% render_model post "abstract" "" "" "truncatewords_html:TRUNCWORDS_COUNT|safe"  %}
                             {% endif %}
-                  </h3>
-                </a>
-                  <span class="badge badge-dark">Categories:</span>
-                  {% for category in post.categories.all %}
-                        {% if category.slug %}
-                            <a href="{% url 'djangocms_blog:posts-category' category=category.slug %}"  class="badge badge-secondary">{{ category.name }}</a>
-                         {% endif %}
-                      {% endfor %}
-
-                <p class="post-meta">Posted
-                  {% if post.author %}
+                      </p>
+                      <a href="{{ post.get_absolute_url }}" class="btn btn-outline-info">Read More &rarr;</a>
+                    </div>
+                    {% block blog_title %}
+                    <div class="card-footer text-muted">
+                      Posted on {{ post.date_published|date:"D, d M Y" }}
+                      {% if post.author %}
                           {% trans "by" %} <a href="{% url 'djangocms_blog:posts-author' post.author.get_username %}" class="link-clr-dark">
                            {% if post.author.get_full_name %}{{ post.author.get_full_name }}{% else %}{{ post.author }}{% endif %}</a>
                       {% endif %}
-                  on {{ post.date_published|date:"D, d M Y" }}
-                </p>
-              </div>
-              <hr>
+                    </div>
+                    {% endblock %}
+                </div>
             {% empty %}
                     <p class="blog-empty">{% trans "No article found." %}</p>
             {% endfor %}
-          <!-- Pager -->
             {% if is_paginated %}
-                {% if page_obj.has_next %}
-                    <div class="clearfix">
-                        <a class="btn btn-primary float-right" href="?{{ view.page_kwarg }}={{ page_obj.next_page_number }}">Older Posts &rarr;</a>
-                    </div>
-                {% endif %}
-                {% if page_obj.has_previous %}
-                    <div class="clearfix">
-                        <a class="btn btn-primary float-right" href="?{{ view.page_kwarg }}={{ page_obj.previous_page_number }}">Newer Posts &rarr;</a>
-                    </div>
-                {% endif %}
+                <ul class="pagination justify-content-center mb-4">
+                    {% if page_obj.has_next %}
+                        <li class="page-item {% if not page_obj.has_next %} disabled {% endif %}">
+                          <a class="page-link" href="?{{ view.page_kwarg }}={{ page_obj.next_page_number }}">&larr; Older</a>
+                        </li>
+                    {%endif %}
+                    {% if page_obj.has_previous %}
+                        <li class="page-item">
+                          <a class="page-link" href="?{{ view.page_kwarg }}={{ page_obj.previous_page_number }}">Newer &rarr;</a>
+                        </li>
+                    {% endif %}
+                </ul>
             {% endif %}
+          <!-- Pagination -->
+
+        </div>
+
+        <!-- Sidebar Widgets Column -->
+        <div class="col-md-4">
+          <div class="card my-4">
+            <h5 class="card-header">{% trans "Categories" %}</h5>
+            <div class="card-body link-clr-dark">
+                {% static_placeholder 'static_algo_categories' %}
+            </div>
+          </div>
+          <!--<div class="card my-4">-->
+            <!--<h5 class="card-header">{% trans "Tags" %}</h5>-->
+            <!--<div class="card-body link-clr-dark">-->
+                <!--{% static_placeholder 'static_algo_tags' %}-->
+            <!--</div>-->
+          <!--</div>-->
+         <div class="card my-4">
+            <h5 class="card-header">YouTube Channel</h5>
+            <div class="card-body">
+                <div class="g-ytsubscribe" data-channelid="UC1qrabKqHy0uFb5g1HWNz2A" data-layout="full" data-count="hidden"></div>
+            </div>
+          </div>
+          <div class="card my-4">
+            <h5 class="card-header">Social Links</h5>
+            <div class="card-body">
+                <a href="https://www.facebook.com/onebyteoftravel/" target="_blank" class="footer-social footer-social-f fab fa-facebook-f"></a>
+                <a href="https://twitter.com/onebyteoftravel" target="_blank" class="footer-social footer-social-tw  fab fa-twitter"></a>
+                <a href="https://www.instagram.com/onebyteoftravel/" target="_blank" class="footer-social footer-social-ig fab fa-instagram"></a>
+                <a href="https://www.youtube.com/channel/UC1qrabKqHy0uFb5g1HWNz2A" class="footer-social footer-social-yt fab fa-youtube"></a>
+
+            </div>
+          </div>
+          <div class="card my-4">
+            <h5 class="card-header">RSS feed &#38; Sitemap XML</h5>
+            <div class="card-body">
+                <a href="https://feeds.feedburner.com/OneByteOfTravel" target="_blank" class="footer-social fa fa-rss"></a>
+                <a href="https://onebyteoftravel.com/sitemap.xml" class="footer-social fas fa-sitemap"></a>
+            </div>
+          </div>
+          <div class="card my-4">
+            <h5 class="card-header">Albert Einstein</h5>
+            <div class="card-body">
+                Life is like riding a bicycle. To keep your balance, you must keep moving.
+            </div>
+          </div>
+           <div class="card my-4">
+                <h5 class="card-header">
+                    <a href="https://github.com/im-vikas187/cms-onebyteoftravel" target="_blank" style="text-decoration:none;color:#4183C4;">Github
+                        <i class="sidebar-git fab fa-github-alt"></i></a>
+                </h5>
+                <div class="card-body">
+                    <p>
+                        Using Django-CMS as content management system to create my blog website and google app engine - standard environment to host my website.
+                        <a href="https://github.com/im-vikas187/cms-onebyteoftravel" target="_blank">
+                        <i class="sidebar-git fab fa-github"></i></a>
+                    </p>
+                </div>
+          </div>
         </div>
       </div>
-    </div>
+      <!-- /.row -->
 
+    </div>
+    <!-- /.container -->
 {% endblock content %}
 {% endspaceless %}
+<div class="card my-4">
+            <h5 class="card-header">Albert Einstein</h5>
+            <div class="card-body">
+              {% static_placeholder "Categories" %}
+            </div>
+          </div>
