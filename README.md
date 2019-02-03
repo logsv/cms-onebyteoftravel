@@ -18,7 +18,7 @@ libraries:
     version: '2017.2'
   - name: six
     version: 1.9.0
-  - name: MySQLdb
+  - name: MySQLdb       
     version: 1.2.5
   - name: django
     version: '1.11'
@@ -45,6 +45,7 @@ automatic_scaling:
 
 > `db-f1-micro`
 > `1 vCPUs`, `memory 614.4 MB.`
+> `./cloud_sql_proxy -instances=one-byte-of-travel:asia-south1:onebyteoftravel=tcp:3306`
 
 4. Domain mapping & SSL certificates
 > `Google managed`
